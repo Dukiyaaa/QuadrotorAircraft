@@ -140,6 +140,10 @@ void MPU6050_GetGyroData(float *gx, float *gy, float *gz)
     *gx = (float)raw_gx * GRO_Range / ADC_16 * DEG_TO_RAD;
     *gy = (float)raw_gy * GRO_Range / ADC_16 * DEG_TO_RAD;
     *gz = (float)raw_gz * GRO_Range / ADC_16 * DEG_TO_RAD;
+	
+		*gx = (*gx) - GX_OFFSET;
+		*gy = (*gy) - GY_OFFSET;
+		*gz = (*gz) - GZ_OFFSET;
 }
 
 /**

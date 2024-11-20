@@ -71,7 +71,7 @@ void SendToAno01(float ax, float ay, float az, float gx, float gy, float gz) {
  */
 void SendToAno03(float Roll, float Pitch, float Yaw) {
     unsigned char ANO_BUFF[13];
-		int rate = 1;
+		int rate = 2;
     // 转换为整数格式发送（放大100倍）
     int16_t RollM = (int16_t)(Roll * rate);
     int16_t PitchM = (int16_t)(Pitch * rate);

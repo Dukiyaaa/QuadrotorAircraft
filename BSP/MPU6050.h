@@ -15,6 +15,11 @@
 #define P3      0.038779
 #define P4      -0.012867
 #define P5      0.509085
+
+//陀螺仪偏置矫正
+#define GX_OFFSET -0.05
+#define GY_OFFSET -0.01
+#define GZ_OFFSET 0.03
 // MPU6050 I2C地址
 #define MPU6050_I2C_ADDR      0x68  // 默认地址（7位地址），实际写操作时需要左移1位
 
