@@ -20,6 +20,11 @@
 #define GX_OFFSET -0.05
 #define GY_OFFSET -0.01
 #define GZ_OFFSET 0.03
+
+//陀螺仪采样循环次数
+#define CYCLE_COUNT 10
+
+
 // MPU6050 I2C地址
 #define MPU6050_I2C_ADDR      0x68  // 默认地址（7位地址），实际写操作时需要左移1位
 
@@ -55,6 +60,7 @@ uint8_t MPU6050_ReadReg(uint8_t reg, uint8_t *data); // 读寄存器
 uint8_t MPU6050_ReadData(uint8_t reg, uint8_t *buf, uint16_t len); // 批量读取数据
 void MPU6050_GetAccelData(float *ax, float *ay, float *az);  // 读取加速度
 void MPU6050_GetGyroData(float *gx, float *gy, float *gz);   // 读取陀螺仪
+void MPU6050_GetGyroAveData(float *gx, float *gy, float *gz); //读取取均值的陀螺仪示数
 void MPU6050_GetTemp(float *temp);                   // 读取温度
 
 #endif

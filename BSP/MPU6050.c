@@ -146,6 +146,20 @@ void MPU6050_GetGyroData(float *gx, float *gy, float *gz)
 		*gz = (*gz) - GZ_OFFSET;
 }
 
+void MPU6050_GetGyroAveData(float *gx, float *gy, float *gz) {
+		float tmp_gx, tmp_gy, tmp_gz;
+		for(int i = 0;i < CYCLE_COUNT;i++) {
+			MPU6050_GetGyroData(&tmp_gx, &tmp_gy, &tmp_gz);
+			*gx += tmp_gx;
+			*gy += tmp_gy;
+			*gz += tmp_gz;
+		}
+		
+		*gx = (*gx) / CYCLE_COUNT;
+		*gy = (*gy) / CYCLE_COUNT;
+		*gz = (*gz) / CYCLE_COUNT;
+}
+	
 /**
  * @brief 获取温度数据
  * @param temp 存储温度值的指针（单位：摄氏度）

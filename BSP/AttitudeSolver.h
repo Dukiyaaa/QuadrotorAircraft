@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+//Yaw值线性回归矫正
+#define K -0.00023825
+#define B -0.00448912
 // 输出的姿态角（全局变量）
 extern float Roll, Pitch, Yaw;
 
@@ -16,6 +19,6 @@ void AttitudeSolver_UpdateIMU(float gx, float gy, float gz, float ax, float ay, 
 void AttitudeSolver_Update(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz);
 
 // 获取姿态角
-void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw);
+void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw, int count);
 
 #endif // ATTITUDE_SOLVER_H

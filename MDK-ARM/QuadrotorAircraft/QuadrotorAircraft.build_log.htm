@@ -30,13 +30,15 @@ Build target 'QuadrotorAircraft'
 compiling main.c...
 ..\BSP\MadgWick.h(31): warning:  #1-D: last line of file ends without a newline
   //=====================================================================================================
+..\BSP\MyMadgWick.h(28): warning:  #47-D: incompatible redefinition of macro "B"  (declared at line 8 of "..\BSP\AttitudeSolver.h")
+  #define B 0.01 //查手册发现噪声为0.05度每�?//隔一段时间roll和yaw就会�?2.6
 ..\BSP\MyMadgWick.h(55): warning:  #1-D: last line of file ends without a newline
   #endif //UNTITLED_MADGWICK_H
-../Core/Src/main.c: 2 warnings, 0 errors
+../Core/Src/main.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=12194 RO-data=462 RW-data=52 ZI-data=1124  
+Program Size: Code=12406 RO-data=462 RW-data=52 ZI-data=1124  
 FromELF: creating hex file...
-"QuadrotorAircraft\QuadrotorAircraft.axf" - 0 Error(s), 2 Warning(s).
+"QuadrotorAircraft\QuadrotorAircraft.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,7 +61,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

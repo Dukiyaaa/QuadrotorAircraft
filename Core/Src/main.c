@@ -96,7 +96,8 @@ int main(void)
 	MySerial_Init();
 	MPU6050_Init();
 	// 初始化姿态解算器
-   AttitudeSolver_Init(1/0.08, 0.3f); // 采样频率为512Hz，增益为0.1
+   AttitudeSolver_Init(1/0.08, 0.3f); // 采样频率为125Hz，增益为0.3
+	 int count = 0; //用于Yaw值线性回归矫正
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,15 +114,17 @@ int main(void)
 		// 获取传感器数据
 			MPU6050_GetAccelData(&ax, &ay, &az);
 			MPU6050_GetGyroData(&gx, &gy, &gz);
+//			MPU6050_GetGyroAveData(&gx, &gy, &gz);
 //			merge(ax, ay, az, gx, gy, gz);
 //			quaternion_to_euler(&q,&Roll, &Pitch, &Yaw);
 //			printf("q.w = %.3f\tq.x = %.3f\tq.y = %.3f\tq.z = %.3f\t\n",q.w, q.z, q.y, q.z);
 //			SendToAno04(q.w, q.z, q.y, q.z);
 		  // 更新姿态
 			AttitudeSolver_UpdateIMU(gx, gy, gz, ax, ay, az);
-
+			
 			// 获取姿态角
-			AttitudeSolver_GetEulerAngles(&Roll, &Pitch, &Yaw);
+
+			AttitudeSolver_GetEulerAngles(&Roll, &Pitch, &Yaw,count++);
 		 
 		  
 //        printf("Accel: X=%.2fg Y=%.2fg Z=%.2fg\n", ax, ay, az);
