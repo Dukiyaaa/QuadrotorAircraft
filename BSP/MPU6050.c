@@ -141,6 +141,7 @@ void MPU6050_GetGyroData(float *gx, float *gy, float *gz)
     *gy = (float)raw_gy * GRO_Range / ADC_16 * DEG_TO_RAD;
     *gz = (float)raw_gz * GRO_Range / ADC_16 * DEG_TO_RAD;
 	
+	  // 消去零偏误差
 		*gx = (*gx) - GX_OFFSET;
 		*gy = (*gy) - GY_OFFSET;
 		*gz = (*gz) - GZ_OFFSET;

@@ -29,6 +29,8 @@ quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_
 quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 quadrotoraircraft\myserial.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 quadrotoraircraft\myserial.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\string.h
 quadrotoraircraft\myserial.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\stdio.h

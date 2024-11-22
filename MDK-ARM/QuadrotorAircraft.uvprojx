@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F401xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\BSP</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\Attitude;..\BSP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -401,6 +401,11 @@
               <FilePath>../Core/Src/gpio.c</FilePath>
             </File>
             <File>
+              <FileName>tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/tim.c</FilePath>
+            </File>
+            <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/usart.c</FilePath>
@@ -429,11 +434,6 @@
               <FileName>stm32f4xx_hal_tim_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_hal_rcc.c</FileName>
@@ -500,6 +500,11 @@
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_hal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -516,14 +521,24 @@
           <GroupName>BSP</GroupName>
           <Files>
             <File>
-              <FileName>MySerial.c</FileName>
+              <FileName>MPU6050.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\MySerial.c</FilePath>
+              <FilePath>..\BSP\MPU6050.c</FilePath>
             </File>
             <File>
-              <FileName>MySerial.h</FileName>
+              <FileName>Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\Motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\MySerial.h</FilePath>
+              <FilePath>..\BSP\Motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\MPU6050.h</FilePath>
             </File>
             <File>
               <FileName>MyIIC.c</FileName>
@@ -536,64 +551,89 @@
               <FilePath>..\BSP\MyIIC.h</FilePath>
             </File>
             <File>
-              <FileName>MPU6050.c</FileName>
+              <FileName>MySerial.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\MPU6050.c</FilePath>
+              <FilePath>..\BSP\MySerial.c</FilePath>
             </File>
             <File>
-              <FileName>MPU6050.h</FileName>
+              <FileName>MySerial.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\MPU6050.h</FilePath>
+              <FilePath>..\BSP\MySerial.h</FilePath>
             </File>
             <File>
-              <FileName>GaussNewton.c</FileName>
+              <FileName>Receiver.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\GaussNewton.c</FilePath>
+              <FilePath>..\BSP\Receiver.c</FilePath>
             </File>
             <File>
-              <FileName>GaussNewton.h</FileName>
+              <FileName>Receiver.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\GaussNewton.h</FilePath>
+              <FilePath>..\BSP\Receiver.h</FilePath>
             </File>
+            <File>
+              <FileName>UpdateMotorState.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\UpdateMotorState.c</FilePath>
+            </File>
+            <File>
+              <FileName>UpdateMotorState.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\UpdateMotorState.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Attitude</GroupName>
+          <Files>
             <File>
               <FileName>Anonymity.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\Anonymity.c</FilePath>
+              <FilePath>..\Attitude\Anonymity.c</FilePath>
             </File>
             <File>
               <FileName>Anonymity.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\Anonymity.h</FilePath>
+              <FilePath>..\Attitude\Anonymity.h</FilePath>
             </File>
             <File>
               <FileName>AttitudeSolver.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\AttitudeSolver.c</FilePath>
+              <FilePath>..\Attitude\AttitudeSolver.c</FilePath>
             </File>
             <File>
               <FileName>AttitudeSolver.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\AttitudeSolver.h</FilePath>
+              <FilePath>..\Attitude\AttitudeSolver.h</FilePath>
+            </File>
+            <File>
+              <FileName>GaussNewton.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Attitude\GaussNewton.c</FilePath>
+            </File>
+            <File>
+              <FileName>GaussNewton.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Attitude\GaussNewton.h</FilePath>
             </File>
             <File>
               <FileName>MadgWick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\MadgWick.c</FilePath>
+              <FilePath>..\Attitude\MadgWick.c</FilePath>
             </File>
             <File>
               <FileName>MadgWick.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\MadgWick.h</FilePath>
+              <FilePath>..\Attitude\MadgWick.h</FilePath>
             </File>
             <File>
               <FileName>MyMadgWick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\MyMadgWick.c</FilePath>
+              <FilePath>..\Attitude\MyMadgWick.c</FilePath>
             </File>
             <File>
               <FileName>MyMadgWick.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\MyMadgWick.h</FilePath>
+              <FilePath>..\Attitude\MyMadgWick.h</FilePath>
             </File>
           </Files>
         </Group>

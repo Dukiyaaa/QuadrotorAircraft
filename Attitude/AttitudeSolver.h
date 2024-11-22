@@ -6,8 +6,9 @@
 //Yaw值线性回归矫正
 #define K -0.00023825
 #define B -0.00448912
+
 // 输出的姿态角（全局变量）
-extern float Roll, Pitch, Yaw;
+extern volatile float Roll, Pitch, Yaw;
 
 // 初始化函数
 void AttitudeSolver_Init(float sample_frequency, float gain);

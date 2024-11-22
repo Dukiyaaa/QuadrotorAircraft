@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -29,6 +30,8 @@
 #include "AttitudeSolver.h"
 #include "MadgWick.h"
 #include "MyMadgWick.h"
+#include "Motor.h"
+#include "Receiver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,39 +95,55 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 	MySerial_Init();
 	MPU6050_Init();
+//	Motor_Init();
+	Receiver_Init();
 	// 初始化姿态解算器
-   AttitudeSolver_Init(1/0.08, 0.3f); // 采样频率为125Hz，增益为0.3
-	 int count = 0; //用于Yaw值线性回归矫正
+//   AttitudeSolver_Init(1/0.08, 0.3f); // 采样频率125Hz，增益为0.3
+//	 int count = 0; //用于Yaw值线性回归矫�??
+//	Motor_SetPulse(1,0.4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 //	float ax, ay, az, gx, gy, gz;
+//	float i = 0.0f;
+
+//		Motor_SetPulse(1,0.07);
+//		HAL_Delay(2000);
+//		Motor_SetPulse(1,0.03);
+//		HAL_Delay(2000);
   while (1)
   {
-//		printf("hello Dukiya\n");
+//		for(int i = 0;i < 4;i++) {
+//			printf("Channel %d,mapVal: %.2f\n", i + 1, pwmMapVal[i]);
+////			printf("Channel %d,wideth: %lu\n", i + 1, pwmWidth[i]);
+//		}
+		
+          
+		
 //				MPU6050_GetAccelData(&ax, &ay, &az);
 //        MPU6050_GetGyroData(&gx, &gy, &gz);
-//		
-			float ax, ay, az, gx, gy, gz;
-			float Roll, Pitch, Yaw;
-		// 获取传感器数据
-			MPU6050_GetAccelData(&ax, &ay, &az);
-			MPU6050_GetGyroData(&gx, &gy, &gz);
+//			float ax, ay, az, gx, gy, gz;
+//			float Roll, Pitch, Yaw;
+		// 获取传感器数
+//			MPU6050_GetAccelData(&ax, &ay, &az);
+//			MPU6050_GetGyroData(&gx, &gy, &gz);
 //			MPU6050_GetGyroAveData(&gx, &gy, &gz);
 //			merge(ax, ay, az, gx, gy, gz);
 //			quaternion_to_euler(&q,&Roll, &Pitch, &Yaw);
 //			printf("q.w = %.3f\tq.x = %.3f\tq.y = %.3f\tq.z = %.3f\t\n",q.w, q.z, q.y, q.z);
 //			SendToAno04(q.w, q.z, q.y, q.z);
-		  // 更新姿态
-			AttitudeSolver_UpdateIMU(gx, gy, gz, ax, ay, az);
-			
-			// 获取姿态角
+		  // 更新姿�??
+//			AttitudeSolver_UpdateIMU(gx, gy, gz, ax, ay, az);
+//			
+//			// 获取姿�?�角
 
-			AttitudeSolver_GetEulerAngles(&Roll, &Pitch, &Yaw,count++);
+//			AttitudeSolver_GetEulerAngles(&Roll, &Pitch, &Yaw,count++);
 		 
 		  
 //        printf("Accel: X=%.2fg Y=%.2fg Z=%.2fg\n", ax, ay, az);
@@ -134,9 +153,9 @@ int main(void)
 //				printf("**********************************************\n");
 //		  SendToAno01();
 //			printf("Roll = %.2f\tPitch = %.2f\tYaw = %.2f\n",Roll, Pitch, Yaw);
-			SendToAno03(Roll, Pitch, Yaw);
+//			SendToAno03(Roll, Pitch, Yaw);
 
-// 发送四元数数据到上位机
+// 发�?�四元数数据到上位机
 //        SendToAno04(q0, q1, q2, q3);
 //        HAL_Delay(5);
     /* USER CODE END WHILE */

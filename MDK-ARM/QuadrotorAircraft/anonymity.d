@@ -1,5 +1,5 @@
-quadrotoraircraft\anonymity.o: ..\BSP\Anonymity.c
-quadrotoraircraft\anonymity.o: ..\BSP\Anonymity.h
+quadrotoraircraft\anonymity.o: ..\Attitude\Anonymity.c
+quadrotoraircraft\anonymity.o: ..\Attitude\Anonymity.h
 quadrotoraircraft\anonymity.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\stdint.h
 quadrotoraircraft\anonymity.o: ../Core/Inc/main.h
 quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
@@ -29,6 +29,8 @@ quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal
 quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 quadrotoraircraft\anonymity.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 quadrotoraircraft\anonymity.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\string.h
 quadrotoraircraft\anonymity.o: ..\BSP\MySerial.h

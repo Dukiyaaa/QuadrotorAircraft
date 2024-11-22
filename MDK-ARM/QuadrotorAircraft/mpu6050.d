@@ -29,6 +29,8 @@ quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_f
 quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 quadrotoraircraft\mpu6050.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 quadrotoraircraft\mpu6050.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\string.h
 quadrotoraircraft\mpu6050.o: ..\BSP\MyIIC.h

@@ -1,5 +1,5 @@
-quadrotoraircraft\mymadgwick.o: ..\BSP\MyMadgWick.c
-quadrotoraircraft\mymadgwick.o: ..\BSP\MyMadgWick.h
+quadrotoraircraft\mymadgwick.o: ..\Attitude\MyMadgWick.c
+quadrotoraircraft\mymadgwick.o: ..\Attitude\MyMadgWick.h
 quadrotoraircraft\mymadgwick.o: ../Core/Inc/main.h
 quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 quadrotoraircraft\mymadgwick.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -29,6 +29,8 @@ quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ha
 quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 quadrotoraircraft\mymadgwick.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 quadrotoraircraft\mymadgwick.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\string.h
 quadrotoraircraft\mymadgwick.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\math.h

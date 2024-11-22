@@ -3,7 +3,7 @@
 #include <math.h>
 
 // 输出的姿态角（全局变量）
-float Roll = 0.0f, Pitch = 0.0f, Yaw = 0.0f;
+
 
 // 初始化函数
 void AttitudeSolver_Init(float sample_frequency, float gain) {
@@ -27,5 +27,5 @@ void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw, int co
     *roll = atan2f(2.0f * (q0 * q1 + q2 * q3), 1.0f - 2.0f * (q1 * q1 + q2 * q2)) * 57.2958f;  // 转换为角度
     *pitch = asinf(2.0f * (q0 * q2 - q3 * q1)) * 57.2958f;
     *yaw = atan2f(2.0f * (q0 * q3 + q1 * q2), 1.0f - 2.0f * (q2 * q2 + q3 * q3)) * 57.2958f;
-		*yaw = *yaw - (K * count + B); 
+		*yaw = *yaw - (K * count + B); // 线性回归矫正
 }
