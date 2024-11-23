@@ -45,3 +45,4 @@ quadrotoraircraft\main.o: ..\Attitude\MyMadgWick.h
 quadrotoraircraft\main.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\math.h
 quadrotoraircraft\main.o: ..\BSP\Motor.h
 quadrotoraircraft\main.o: ..\BSP\Receiver.h
+quadrotoraircraft\main.o: ..\BSP\UpdateMotorState.h

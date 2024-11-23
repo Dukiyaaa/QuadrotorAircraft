@@ -23,4 +23,5 @@
 #define SUB_MOTORVAL2 250        // 2通道脉宽范围
 
 void Receiver_Init(void);        //初始化函数
+float Receiver_GetMappedValue(uint32_t channelIndex); //返回映射值，方便外层调用
 #endif // __RECEIVER_H

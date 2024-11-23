@@ -32,6 +32,7 @@
 #include "MyMadgWick.h"
 #include "Motor.h"
 #include "Receiver.h"
+#include "UpdateMotorState.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -100,7 +101,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	MySerial_Init();
 	MPU6050_Init();
-//	Motor_Init();
+	Motor_Init();
 	Receiver_Init();
 	// 初始化姿态解算器
 //   AttitudeSolver_Init(1/0.08, 0.3f); // 采样频率125Hz，增益为0.3
@@ -113,9 +114,17 @@ int main(void)
 //	float ax, ay, az, gx, gy, gz;
 //	float i = 0.0f;
 
+//		Motor_SetPulse(1,0.06);
+//		HAL_Delay(2000);
 //		Motor_SetPulse(1,0.07);
 //		HAL_Delay(2000);
-//		Motor_SetPulse(1,0.03);
+//		Motor_SetPulse(1,0.08);
+//		HAL_Delay(2000);
+//		Motor_SetPulse(1,0.09);
+//		HAL_Delay(2000);
+		Motor_SetPulse(1,0.10);
+		HAL_Delay(2000);
+		Motor_SetPulse(1,0.05);
 //		HAL_Delay(2000);
   while (1)
   {
@@ -125,7 +134,7 @@ int main(void)
 //		}
 		
           
-		
+		UpdateMotorState();
 //				MPU6050_GetAccelData(&ax, &ay, &az);
 //        MPU6050_GetGyroData(&gx, &gy, &gz);
 //			float ax, ay, az, gx, gy, gz;

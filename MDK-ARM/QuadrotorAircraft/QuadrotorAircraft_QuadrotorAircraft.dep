@@ -1,6 +1,6 @@
 Dependencies for Project 'QuadrotorAircraft', Target 'QuadrotorAircraft': (DO NOT MODIFY !)
 F (startup_stm32f401xe.s)(0x673EE8F9)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "STM32F401xE SETA 1"--list startup_stm32f401xe.lst --xref -o quadrotoraircraft\startup_stm32f401xe.o --depend quadrotoraircraft\startup_stm32f401xe.d)
-F (../Core/Src/main.c)(0x67408F89)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\main.o --omf_browse quadrotoraircraft\main.crf --depend quadrotoraircraft\main.d)
+F (../Core/Src/main.c)(0x6741BCBD)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\main.o --omf_browse quadrotoraircraft\main.crf --depend quadrotoraircraft\main.d)
 I (../Core/Inc/main.h)(0x673C81A6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66120FBE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x673ED66D)
@@ -45,7 +45,8 @@ I (..\Attitude\MadgWick.h)(0x673EDF6F)
 I (..\Attitude\MyMadgWick.h)(0x673EDF70)
 I (D:\MAIN\keil_new\ARM\ARMCC\include\math.h)(0x588B8344)
 I (..\BSP\Motor.h)(0x673EDE89)
-I (..\BSP\Receiver.h)(0x67408EB3)
+I (..\BSP\Receiver.h)(0x6741BC15)
+I (..\BSP\UpdateMotorState.h)(0x6741BC27)
 F (../Core/Src/gpio.c)(0x673ED66B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\gpio.o --omf_browse quadrotoraircraft\gpio.crf --depend quadrotoraircraft\gpio.d)
 I (../Core/Inc/gpio.h)(0x673C7E22)
 I (../Core/Inc/main.h)(0x673C81A6)
@@ -888,8 +889,8 @@ I (D:\MAIN\keil_new\ARM\ARMCC\include\string.h)(0x588B8344)
 I (D:\MAIN\keil_new\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (../Core/Inc/usart.h)(0x673C7E22)
 F (..\BSP\MySerial.h)(0x673EC0E7)()
-F (..\BSP\Receiver.c)(0x67408F69)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\receiver.o --omf_browse quadrotoraircraft\receiver.crf --depend quadrotoraircraft\receiver.d)
-I (..\BSP\Receiver.h)(0x67408EB3)
+F (..\BSP\Receiver.c)(0x6741BAEB)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\receiver.o --omf_browse quadrotoraircraft\receiver.crf --depend quadrotoraircraft\receiver.d)
+I (..\BSP\Receiver.h)(0x6741BC15)
 I (../Core/Inc/main.h)(0x673C81A6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66120FBE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x673ED66D)
@@ -925,9 +926,9 @@ I (D:\MAIN\keil_new\ARM\ARMCC\include\string.h)(0x588B8344)
 I (../Core/Inc/tim.h)(0x673EE8F6)
 I (..\BSP\MySerial.h)(0x673EC0E7)
 I (D:\MAIN\keil_new\ARM\ARMCC\include\stdio.h)(0x588B8344)
-F (..\BSP\Receiver.h)(0x67408EB3)()
-F (..\BSP\UpdateMotorState.c)(0x67407899)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\updatemotorstate.o --omf_browse quadrotoraircraft\updatemotorstate.crf --depend quadrotoraircraft\updatemotorstate.d)
-I (..\BSP\UpdateMotorState.h)(0x673EFBC5)
+F (..\BSP\Receiver.h)(0x6741BC15)()
+F (..\BSP\UpdateMotorState.c)(0x6741C0C5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\updatemotorstate.o --omf_browse quadrotoraircraft\updatemotorstate.crf --depend quadrotoraircraft\updatemotorstate.d)
+I (..\BSP\UpdateMotorState.h)(0x6741BC27)
 I (../Core/Inc/main.h)(0x673C81A6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66120FBE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x673ED66D)
@@ -960,9 +961,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x66120FBE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x66120FBE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x66120FBE)
 I (D:\MAIN\keil_new\ARM\ARMCC\include\string.h)(0x588B8344)
-I (..\BSP\Receiver.h)(0x67408EB3)
+I (..\BSP\Receiver.h)(0x6741BC15)
 I (..\BSP\Motor.h)(0x673EDE89)
-F (..\BSP\UpdateMotorState.h)(0x673EFBC5)()
+F (..\BSP\UpdateMotorState.h)(0x6741BC27)()
 F (..\Attitude\Anonymity.c)(0x673DA5A0)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Attitude -I ..\BSP-I.\RTE\_QuadrotorAircraft-ID:\MAIN\keil_new\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\MAIN\keil_new\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o quadrotoraircraft\anonymity.o --omf_browse quadrotoraircraft\anonymity.crf --depend quadrotoraircraft\anonymity.d)
 I (..\Attitude\Anonymity.h)(0x673D4CED)
 I (D:\MAIN\keil_new\ARM\ARMCC\include\stdint.h)(0x588B8344)

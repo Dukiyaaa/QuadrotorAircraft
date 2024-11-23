@@ -123,3 +123,13 @@ void Receiver_Init(void) {
     HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_3); // 启动通道3中断
     HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_4); // 启动通道4中断
 }
+
+/**
+ * @brief 映射值接口
+ * 
+ * @return 返回对应通道的映射值
+ */
+float Receiver_GetMappedValue(uint32_t channelIndex) 
+{
+		return pwmMapVal[channelIndex];
+}
