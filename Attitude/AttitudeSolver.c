@@ -2,6 +2,8 @@
 #include "MadgWick.h"
 #include <math.h>
 
+#define DEG_TO_RAD (3.14159265358979323846 / 180.0)
+#define RAD_TO_DEG (180.0 / 3.14159265358979323846)
 // 输出的姿态角（全局变量）
 
 
@@ -22,10 +24,16 @@ void AttitudeSolver_Update(float gx, float gy, float gz, float ax, float ay, flo
     MadgwickAHRSupdate(gx, gy, gz, ax, ay, az, mx, my, mz);
 }
 
-// 获取姿态角（欧拉角形式）
-void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw, int count) {
-    *roll = atan2f(2.0f * (q0 * q1 + q2 * q3), 1.0f - 2.0f * (q1 * q1 + q2 * q2)) * 57.2958f;  // 转换为角度
-    *pitch = asinf(2.0f * (q0 * q2 - q3 * q1)) * 57.2958f;
-    *yaw = atan2f(2.0f * (q0 * q3 + q1 * q2), 1.0f - 2.0f * (q2 * q2 + q3 * q3)) * 57.2958f;
-		*yaw = *yaw - (K * count + B); // 线性回归矫正
+// 获取姿态角（欧拉角形式,单位为rad）
+void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw, int *count) {
+    *roll = atan2f(2.0f * (q0 * q1 + q2 * q3), 1.0f - 2.0f * (q1 * q1 + q2 * q2)) * RAD_TO_DEG;  // 转换为角度
+    *pitch = asinf(2.0f * (q0 * q2 - q3 * q1)) * RAD_TO_DEG;
+    *yaw = atan2f(2.0f * (q0 * q3 + q1 * q2), 1.0f - 2.0f * (q2 * q2 + q3 * q3)) * RAD_TO_DEG;
+		*yaw = *yaw - (K * (*count) + B); // 线性回归矫正
+	  *count = *count + 1;
+	  
+	  //转换回来
+//		*roll *= DEG_TO_RAD;
+//	  *pitch *= DEG_TO_RAD;
+//	  *yaw *= DEG_TO_RAD;
 }

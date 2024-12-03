@@ -20,6 +20,6 @@ void AttitudeSolver_UpdateIMU(float gx, float gy, float gz, float ax, float ay, 
 void AttitudeSolver_Update(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz);
 
 // 获取姿态角
-void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw, int count);
+void AttitudeSolver_GetEulerAngles(float *roll, float *pitch, float *yaw, int *count);
 
 #endif // ATTITUDE_SOLVER_H

@@ -2,6 +2,8 @@
 #include "MySerial.h"
 #include "MPU6050.h" // 引入MPU6050相关函数头文件
 
+#define BYTE0(dwTemp)  (*(char*)(&dwTemp))
+#define BYTE1(dwTemp)  (*((char*)(&dwTemp) + 1))
 // 外部变量声明
 //extern float Roll, Pitch, Yaw;
 //extern quaternion q;
@@ -64,35 +66,41 @@ void SendToAno01(float ax, float ay, float az, float gx, float gy, float gz) {
 }
 
 /**
- * @brief 发送姿态角数据 (ID: 0x03, 13字节)
+* @brief 发送姿态角数据 (ID: 0x03, 13字节) 单位为°
  * @param Roll 指向 Roll 角数据的指针
  * @param Pitch 指向 Pitch 角数据的指针
  * @param Yaw 指向 Yaw 角数据的指针
  */
 void SendToAno03(float Roll, float Pitch, float Yaw) {
     unsigned char ANO_BUFF[13];
-		int rate = 2;
+		int rate = 100;
     // 转换为整数格式发送（放大100倍）
     int16_t RollM = (int16_t)(Roll * rate);
     int16_t PitchM = (int16_t)(Pitch * rate);
     int16_t YawM = (int16_t)(Yaw * rate);
-
-//		int16_t RollM = (int16_t)(Roll);
-//    int16_t PitchM = (int16_t)(Pitch);
-//    int16_t YawM = (int16_t)(Yaw);
 	
     ANO_BUFF[0] = 0xAA; // 帧头
     ANO_BUFF[1] = 0xFF;
     ANO_BUFF[2] = 0x03; // 功能字
     ANO_BUFF[3] = 7;    // 数据长度
 
-    // 数据部分
-    ANO_BUFF[4] = RollM >> 8;
-    ANO_BUFF[5] = RollM & 0xff;
-    ANO_BUFF[6] = PitchM >> 8;
-    ANO_BUFF[7] = PitchM & 0xff;
-    ANO_BUFF[8] = YawM >> 8;
-    ANO_BUFF[9] = YawM & 0xff;
+    // 数据部分 低字节在前高字节在后
+
+		ANO_BUFF[4] = BYTE0(RollM);
+		ANO_BUFF[5] = BYTE1(RollM);
+		ANO_BUFF[6] = BYTE0(PitchM);
+		ANO_BUFF[7] = BYTE1(PitchM);    
+		ANO_BUFF[8] = BYTE0(YawM);
+		ANO_BUFF[9] = BYTE1(YawM);
+
+//    ANO_BUFF[4] = RollM & 0xff;
+//    ANO_BUFF[5] = (RollM >> 8) & 0xff;
+//    ANO_BUFF[6] = PitchM & 0xff;    
+//    ANO_BUFF[7] = (PitchM >> 8) & 0xff;
+//    ANO_BUFF[8] = YawM & 0xff;
+//    ANO_BUFF[9] = (YawM >> 8) & 0xff;
+
+		
     ANO_BUFF[10] = 0x01; // 融合姿态标志（占位）
 
     // 校验部分
