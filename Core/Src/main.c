@@ -33,6 +33,7 @@
 #include "Motor.h"
 #include "Receiver.h"
 #include "UpdateMotorState.h"
+#include "AttitudePIDController.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,11 +102,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	MySerial_Init();
 	MPU6050_Init();
-	Motor_Init();
-	Receiver_Init();
+//	Motor_Init();
+//	Receiver_Init();
 	// 初始化姿态解算器
-//   AttitudeSolver_Init(1/0.08, 0.3f); // 采样频率125Hz，增益为0.3
+//   AttitudeSolver_Init(50, 0.8f); // 采样频率125Hz，增益为0.3
 //	 int count = 0; //用于Yaw值线性回归矫�??
+	 
+   AttitudePIDController  attitudePIDController ;
+	 AttitudePIDController_Init(&attitudePIDController);
 //	Motor_SetPulse(1,0.4);
   /* USER CODE END 2 */
 
@@ -122,47 +126,46 @@ int main(void)
 //		HAL_Delay(2000);
 //		Motor_SetPulse(1,0.09);
 //		HAL_Delay(2000);
-		Motor_SetPulse(1,0.10);
-		HAL_Delay(2000);
-		Motor_SetPulse(1,0.05);
+//		Motor_SetPulse(1,0.10);
+//		HAL_Delay(2000);
+//		Motor_SetPulse(1,0.05);
 //		HAL_Delay(2000);
   while (1)
   {
-//		for(int i = 0;i < 4;i++) {
-//			printf("Channel %d,mapVal: %.2f\n", i + 1, pwmMapVal[i]);
-////			printf("Channel %d,wideth: %lu\n", i + 1, pwmWidth[i]);
-//		}
-		
-          
-		UpdateMotorState();
-//				MPU6050_GetAccelData(&ax, &ay, &az);
-//        MPU6050_GetGyroData(&gx, &gy, &gz);
-//			float ax, ay, az, gx, gy, gz;
-//			float Roll, Pitch, Yaw;
+       
+//		UpdateMotorState();
+
+//		AttitudePIDController_ProcData(&attitudePIDController);
+			
 		// 获取传感器数
+//		  float ax, ay, az, gx, gy, gz;
+//			float Roll, Pitch, Yaw;
 //			MPU6050_GetAccelData(&ax, &ay, &az);
 //			MPU6050_GetGyroData(&gx, &gy, &gz);
-//			MPU6050_GetGyroAveData(&gx, &gy, &gz);
-//			merge(ax, ay, az, gx, gy, gz);
-//			quaternion_to_euler(&q,&Roll, &Pitch, &Yaw);
-//			printf("q.w = %.3f\tq.x = %.3f\tq.y = %.3f\tq.z = %.3f\t\n",q.w, q.z, q.y, q.z);
-//			SendToAno04(q.w, q.z, q.y, q.z);
-		  // 更新姿�??
 //			AttitudeSolver_UpdateIMU(gx, gy, gz, ax, ay, az);
-//			
-//			// 获取姿�?�角
+//		  AttitudeSolver_GetEulerAngles(&Roll, &Pitch, &Yaw,&count);
+//		  SendToAno03(Roll, Pitch, Yaw);
+//    printf("Accel: X=%.2fg Y=%.2fg Z=%.2fg\n", ax, ay, az);
+//		printf("Gyro: X=%.2fPI Y=%.2fPI Z=%.2fPI\n", gx, gy, gz);
+//		printf("Roll = %.2f\tPitch = %.2f\tYaw = %.2f\n",Roll, Pitch, Yaw);
+		
+		AttitudePIDController_ProcData(&attitudePIDController);
+//		SendToAno03(attitudePIDController.Roll, attitudePIDController.Pitch, attitudePIDController.Yaw);
 
-//			AttitudeSolver_GetEulerAngles(&Roll, &Pitch, &Yaw,count++);
-		 
+//	  		printf("q.w = %.3f\tq.x = %.3f\tq.y = %.3f\tq.z = %.3f\t\n",q.w, q.z, q.y, q.z);
+//			SendToAno04(q.w, q.z, q.y, q.z);
+
+			
+	 
 		  
-//        printf("Accel: X=%.2fg Y=%.2fg Z=%.2fg\n", ax, ay, az);
-//		    printf("Gyro: X=%.2fPI Y=%.2fPI Z=%.2fPI\n", gx, gy, gz);
+
 //				printf("**********************************************\n");
 //				printf("q0: %.2f, q1: %.2f, q2: %.2f, q3: %.2f\n", q0, q1, q2, q3);
 //				printf("**********************************************\n");
 //		  SendToAno01();
-//			printf("Roll = %.2f\tPitch = %.2f\tYaw = %.2f\n",Roll, Pitch, Yaw);
-//			SendToAno03(Roll, Pitch, Yaw);
+
+
+			
 
 // 发�?�四元数数据到上位机
 //        SendToAno04(q0, q1, q2, q3);
