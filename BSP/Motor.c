@@ -63,9 +63,4 @@ void Motor_SetPulse(int channel, float Pulse)
             // 无效通道号，忽略设置
             break;
     }
-		// 打印调试信息
-    printf("PWM Channel: %d, Pulse: %.2f, Duty: %d\n", channel, Pulse, duty);
-		uint32_t i = __HAL_TIM_GET_COMPARE(&htim3, TIM_CHANNEL_1);
-		printf("Current CCR Value for Channel 1: %lu\n", i);
-
 }

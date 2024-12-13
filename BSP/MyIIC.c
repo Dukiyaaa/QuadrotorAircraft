@@ -56,7 +56,7 @@ static void I2C_SetSDA(uint8_t val)
 
 /**
  * @brief 读取SDA引脚电平
- * @return GPIO_PIN_SET 或 GPIO_PIN_RESET
+ * @return GPIO_PIN_SET 或 GPIO_PIN_RESET 0应答，1非应答
  */
 static uint8_t I2C_ReadSDA(void)
 {
@@ -64,10 +64,11 @@ static uint8_t I2C_ReadSDA(void)
 }
 
 /**
- * @brief 发送I2C起始信号
+ * @brief 发送I2C起始信号,在 SCL 高电平时，将 SDA 从低电平拉高。
  */
 void I2C_Start(void)
 {
+		//要做到通信开始和结束后，SCL和SDA都拉高，中间则二者都低
     I2C_SetSDA(1);
     I2C_SetSCL(1);
     I2C_Delay(I2C_DELAY_TIME);
@@ -120,11 +121,11 @@ uint8_t I2C_WaitAck(void)
  */
 void I2C_SendAck(void)
 {
-    I2C_SetSDA(0);
+    I2C_SetSDA(0);//主机发送0，表示应答
     I2C_Delay(I2C_DELAY_TIME);
-    I2C_SetSCL(1);
+    I2C_SetSCL(1);//从机此时读取应答
     I2C_Delay(I2C_DELAY_TIME);
-    I2C_SetSCL(0);
+    I2C_SetSCL(0);//读取完毕
     I2C_Delay(I2C_DELAY_TIME);
 }
 
@@ -133,11 +134,11 @@ void I2C_SendAck(void)
  */
 void I2C_SendNotAck(void)
 {
-    I2C_SetSDA(1);
+    I2C_SetSDA(1);//主机发送1，表示非应答
     I2C_Delay(I2C_DELAY_TIME);
-    I2C_SetSCL(1);
+    I2C_SetSCL(1);//从机此时读取应答
     I2C_Delay(I2C_DELAY_TIME);
-    I2C_SetSCL(0);
+    I2C_SetSCL(0);//读取完毕
     I2C_Delay(I2C_DELAY_TIME);
 }
 

@@ -4,6 +4,7 @@
 #include "main.h"
 //倍率说明
 #define DEG_TO_RAD (3.14159265358979323846 / 180.0)
+#define RAD_TO_DEG (180.0 / 3.14159265358979323846)
 #define ADC_16 65536
 #define ACC_Range 4
 #define GRO_Range 4000
