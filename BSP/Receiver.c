@@ -7,8 +7,19 @@ static uint32_t risingEdgeTime[CHANNEL_COUNT] = {0};  // 存储每个通道的�
 static uint32_t fallingEdgeTime[CHANNEL_COUNT] = {0}; // 存储每个通道的下降沿捕获时间
 static uint8_t isRisingEdge[CHANNEL_COUNT] = {1};     // 每个通道的标志位：1表示检测上升沿，0表示检测下降沿
 static uint32_t pwmWidth[CHANNEL_COUNT] = {0};        // 存储每个通道的脉宽（单位：计数值）
+static float curMapVal[CHANNEL_COUNT] = {0.5,0,0.5,0.5};          //存储当前通道的map值
 static float pwmMapVal[CHANNEL_COUNT] = {0};          // 存储每个通道映射到控制值的结果（0.0 到 1.0）
-
+//pwmMapVal规定
+/*
+pwmMapVal[0]:通道一  右手左右   控制航向
+pwmMapVal[1]:通道二  右手上下   控制升降
+pwmMapVal[2]:通道三  左手上下   控制俯仰
+pwmMapVal[3]:通道四  左手左右   控制横滚
+1.升降会控制四个电机，即通道2脉宽增大将会导致四个通道的PWM输出占空比增大
+2.横滚会控制分别控制通道13和24，向右拨滑杆，飞机沿x轴顺时针转，24通道占空比增加，13通道占空比减小
+3.俯仰分别控制通道12和34，向上拨滑杆，飞机沿y轴顺时针旋转，12占空比增加，34减少
+4.偏航分别控制通道14和23，向右拨滑杆，飞机沿z轴顺时针转，14占空比增加，23减少
+*/
 // 函数声明
 static uint32_t CalculatePWMWidth(uint32_t risingEdge, uint32_t fallingEdge, uint32_t period);
 static void MapPWMWidthToValue(uint32_t width, uint32_t channelIndex);
@@ -44,27 +55,89 @@ static void MapPWMWidthToValue(uint32_t width, uint32_t channelIndex) {
     float MIN_MOTORVAL, MAX_MOTORVAL, SUB_MOTORVAL;
 
     // 根据通道索引选择不同的映射范围
-    if (channelIndex == CHANNEL3_INDEX) {
-        MIN_MOTORVAL = MIN_MOTORVAL3;
-        MAX_MOTORVAL = MAX_MOTORVAL3;
-        SUB_MOTORVAL = SUB_MOTORVAL3;
-    } else if (channelIndex == CHANNEL2_INDEX) {
-        MIN_MOTORVAL = MIN_MOTORVAL2;
-        MAX_MOTORVAL = MAX_MOTORVAL2;
-        SUB_MOTORVAL = SUB_MOTORVAL2;
-    } else {
-        MIN_MOTORVAL = MIN_MOTORVAL14;
-        MAX_MOTORVAL = MAX_MOTORVAL14;
-        SUB_MOTORVAL = SUB_MOTORVAL14;
+    switch (channelIndex) {
+        case CHANNEL3_INDEX:
+            MIN_MOTORVAL = MIN_MOTORVAL3;
+            MAX_MOTORVAL = MAX_MOTORVAL3;
+            SUB_MOTORVAL = SUB_MOTORVAL3;
+            break;
+        case CHANNEL2_INDEX:
+            MIN_MOTORVAL = MIN_MOTORVAL2;
+            MAX_MOTORVAL = MAX_MOTORVAL2;
+            SUB_MOTORVAL = SUB_MOTORVAL2;
+            break;
+        default:  // 偏航控制：CHANNEL14_INDEX，俯仰控制：CHANNEL12_INDEX，横滚控制：CHANNEL24_INDEX
+            MIN_MOTORVAL = MIN_MOTORVAL14;
+            MAX_MOTORVAL = MAX_MOTORVAL14;
+            SUB_MOTORVAL = SUB_MOTORVAL14;
+            break;
     }
 
     // 限制脉宽在有效范围内
-    if (width < MIN_MOTORVAL) width = MIN_MOTORVAL;
-    if (width > MAX_MOTORVAL) width = MAX_MOTORVAL;
+    if (width < MIN_MOTORVAL) {
+        width = MIN_MOTORVAL;
+    }
+    if (width > MAX_MOTORVAL) {
+        width = MAX_MOTORVAL;
+    }
 
     // 映射值计算
-    pwmMapVal[channelIndex] = ((float)(width - MIN_MOTORVAL)) / SUB_MOTORVAL;
+    float mappedValue = ((float)(width - MIN_MOTORVAL)) / SUB_MOTORVAL;
+//    pwmMapVal[channelIndex] = mappedValue;
+		
+		float deta = 0;
+		float tmp ;
+		
+		switch (channelIndex) {
+				case CHANNEL2_INDEX:  // 升降控制 
+					  tmp	= curMapVal[channelIndex];
+						curMapVal[channelIndex] = mappedValue;
+						deta = mappedValue - tmp;
+						
+						pwmMapVal[CHANNEL1_INDEX] += deta; // 电机1增加
+						pwmMapVal[CHANNEL2_INDEX] += deta; // 电机2增加
+						pwmMapVal[CHANNEL3_INDEX] += deta; // 电机3增加
+						pwmMapVal[CHANNEL4_INDEX] += deta; // 电机4增加
+						break;
+
+				case CHANNEL4_INDEX:  // 横滚控制
+					  tmp	= curMapVal[channelIndex];
+						curMapVal[channelIndex] = mappedValue;
+						deta = mappedValue - tmp;
+						pwmMapVal[CHANNEL1_INDEX] -= deta; // 电机13减小
+						pwmMapVal[CHANNEL3_INDEX] -= deta; // 电机13减小
+						pwmMapVal[CHANNEL2_INDEX] += deta;      // 电机24增加
+						pwmMapVal[CHANNEL4_INDEX] += deta;      // 电机24增加
+						break;
+
+				case CHANNEL3_INDEX:  // 俯仰控制
+					  tmp	= curMapVal[channelIndex];
+						curMapVal[channelIndex] = mappedValue;
+						deta = mappedValue - tmp;
+						pwmMapVal[CHANNEL1_INDEX] += deta; // 电机12增加
+						pwmMapVal[CHANNEL2_INDEX] += deta; // 电机12增加
+						pwmMapVal[CHANNEL3_INDEX] -= deta; // 电机34减小
+						pwmMapVal[CHANNEL4_INDEX] -= deta; // 电机34减小
+						break;
+
+				case CHANNEL1_INDEX:  // 偏航控制
+					  tmp	= curMapVal[channelIndex];
+						curMapVal[channelIndex] = mappedValue;
+						deta = mappedValue - tmp;
+						pwmMapVal[CHANNEL1_INDEX] += deta; // 电机14增加
+						pwmMapVal[CHANNEL4_INDEX] += deta; // 电机14增加
+						pwmMapVal[CHANNEL2_INDEX] -= deta; // 电机23减小
+						pwmMapVal[CHANNEL3_INDEX] -= deta; // 电机23减小
+						break;
+
+				default:
+						break;
+		}
+   
 }
+
+
+
 
 /**
  * @brief 获取当前通道索引
