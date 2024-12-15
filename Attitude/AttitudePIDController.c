@@ -3,6 +3,9 @@
 #include "AttitudeSolver.h"
 #include "MPU6050.h"
 #include "MySerial.h"
+#include "Receiver.h"
+
+extern float pwmMapVal[CHANNEL_COUNT];
 
 void AttitudePIDController_Init(AttitudePIDController * attitudePIDController) {
 	//
@@ -34,9 +37,17 @@ void AttitudePIDController_ProcData(AttitudePIDController * attitudePIDControlle
 //	 printf("Gyro: X=%.2fPI Y=%.2fPI Z=%.2fPI\n", attitudePIDController->gx, attitudePIDController->gy, attitudePIDController->gz);
 //	 printf("Roll = %.2frad\tPitch = %.2frad\tYaw = %.2frad\n",attitudePIDController->Roll, attitudePIDController->Pitch, attitudePIDController->Yaw);
 //	printf("Roll = %.2f°\tPitch = %.2f°\tYaw = %.2f°\n",attitudePIDController->Roll * RAD_TO_DEG, attitudePIDController->Pitch * RAD_TO_DEG, attitudePIDController->Yaw * RAD_TO_DEG);
-	PIDAngleProc_Roll(&(attitudePIDController->rollPID),0.0f,attitudePIDController->Roll,attitudePIDController->gx);
-	PIDAngleProc_Pitch(&(attitudePIDController->pitchPID),0.0f,attitudePIDController->Pitch,attitudePIDController->gx);
-	PIDAngleProc_Yaw(&(attitudePIDController->yawPID),0.0f,attitudePIDController->gz);
+	PIDAngleProc_Roll(&(attitudePIDController->rollPID),Receiver_GetMappedAngle(CHANNEL4_INDEX),attitudePIDController->Roll,attitudePIDController->gx);
+	PIDAngleProc_Pitch(&(attitudePIDController->pitchPID),Receiver_GetMappedAngle(CHANNEL3_INDEX),attitudePIDController->Pitch,attitudePIDController->gx);
+  //test:
+	float deta;
+	//roll:
+	deta = attitudePIDController->rollPID.output / 1200;
+	Receiver_SetMappedValue(CHANNEL4_INDEX, deta);
+	//pitch:
+	deta = attitudePIDController->pitchPID.output / 1200;
+	Receiver_SetMappedValue(CHANNEL3_INDEX, deta);
+	//	PIDAngleProc_Yaw(&(attitudePIDController->yawPID),0.0f,attitudePIDController->gz);
 
 	// 再打印 rollPID 的内外环数据
 //	printf("外环目标值:%.2f\t外环反馈值:%.2f\t内环目标值:%.2f\t内环反馈值:%.2f\t内环输出值:%.2f\n",

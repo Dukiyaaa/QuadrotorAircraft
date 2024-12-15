@@ -74,7 +74,7 @@ void PIDAngleProc_Roll(PIDCascade *rollPID,float rollRef, float rollFeedback, fl
     PID_CascadeCalc(rollPID, rollRef, rollFeedback, rollRateFeedback);
     // rollPID.output 包含了经过PID计算后的控制输出
 
-//	  printf("外环目标值:%.2f\t外环反馈值:%.2f\t内环目标值:%.2f\t内环反馈值:%.2f\t内环输出值:%.2f\n",rollRef,rollFeedback,rollPID->outer.output,rollRateFeedback,rollPID->inner.output);
+//	printf("Roll:外环目标值:%.2f\t外环反馈值:%.2f\t内环目标值:%.2f\t内环反馈值:%.2f\t内环输出值:%.2f\n",rollRef,rollFeedback,rollPID->outer.output,rollRateFeedback,rollPID->inner.output);
 }
 
 // 处理Pitch角度控制
@@ -84,7 +84,7 @@ void PIDAngleProc_Pitch(PIDCascade *pitchPID,float pitchRef, float pitchFeedback
     PID_CascadeCalc(pitchPID, pitchRef, pitchFeedback, pitchRateFeedback);
     // pitchPID.output 包含了经过PID计算后的控制输出
 
-//	  printf("外环目标值:%.2f\t外环反馈值:%.2f\t内环目标值:%.2f\t内环反馈值:%.2f\t内环输出值:%.2f\n",pitchRef,pitchFeedback,pitchPID->outer.output,pitchRateFeedback,pitchPID->inner.output);
+	printf("Pitch:外环目标值:%.2f\t外环反馈值:%.2f\t内环目标值:%.2f\t内环反馈值:%.2f\t内环输出值:%.2f\n",pitchRef,pitchFeedback,pitchPID->outer.output,pitchRateFeedback,pitchPID->inner.output);
 
 }
 

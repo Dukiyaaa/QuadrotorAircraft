@@ -39,3 +39,4 @@ quadrotoraircraft\attitudepidcontroller.o: ..\Attitude\AttitudeSolver.h
 quadrotoraircraft\attitudepidcontroller.o: ..\BSP\MPU6050.h
 quadrotoraircraft\attitudepidcontroller.o: ..\BSP\MySerial.h
 quadrotoraircraft\attitudepidcontroller.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\stdio.h
+quadrotoraircraft\attitudepidcontroller.o: ..\BSP\Receiver.h

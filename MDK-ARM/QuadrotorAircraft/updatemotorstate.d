@@ -35,3 +35,5 @@ quadrotoraircraft\updatemotorstate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f
 quadrotoraircraft\updatemotorstate.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\string.h
 quadrotoraircraft\updatemotorstate.o: ..\BSP\Receiver.h
 quadrotoraircraft\updatemotorstate.o: ..\BSP\Motor.h
+quadrotoraircraft\updatemotorstate.o: ..\BSP\MySerial.h
+quadrotoraircraft\updatemotorstate.o: D:\MAIN\keil_new\ARM\ARMCC\Bin\..\include\stdio.h

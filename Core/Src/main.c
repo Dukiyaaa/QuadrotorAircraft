@@ -100,17 +100,17 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-	MySerial_Init();
-//	MPU6050_Init();
-//	Motor_Init();
-//	Receiver_Init();
+//	MySerial_Init();
+	MPU6050_Init();
+	Motor_Init();
+	Receiver_Init();
 //	printf("hello world\n");
 	// 初始化姿态解算器
 //   AttitudeSolver_Init(50, 0.8f); // 采样频率125Hz，增益为0.3
 //	 int count = 0; //用于Yaw值线性回归矫�??
 	 
-//  AttitudePIDController  attitudePIDController ;
-//	AttitudePIDController_Init(&attitudePIDController);
+  AttitudePIDController  attitudePIDController ;
+	AttitudePIDController_Init(&attitudePIDController);
 //	Motor_SetPulse(1,0.4);
   /* USER CODE END 2 */
 
@@ -122,9 +122,9 @@ int main(void)
   while (1)
   {
        
-//		UpdateMotorState();
+		UpdateMotorState();
 //		Motor_SetPulse(1,0.09);
-//		AttitudePIDController_ProcData(&attitudePIDController);
+		AttitudePIDController_ProcData(&attitudePIDController);
 			
 		// 获取传感器数
 //		  float ax, ay, az, gx, gy, gz;

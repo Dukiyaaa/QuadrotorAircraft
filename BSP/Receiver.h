@@ -24,4 +24,6 @@
 
 void Receiver_Init(void);        //初始化函数
 float Receiver_GetMappedValue(uint32_t channelIndex); //返回映射值，方便外层调用
+float Receiver_GetMappedAngle(uint32_t channelIndex); //返回映射角度值，方便外层调用
+void Receiver_SetMappedValue(uint32_t channelIndex, float deta);//传入改变值用于设定新的MappedValue交给UpdateMotor模块调控
 #endif // __RECEIVER_H
