@@ -635,6 +635,26 @@
               <FileType>5</FileType>
               <FilePath>..\Attitude\MyMadgWick.h</FilePath>
             </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Attitude\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>PID.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Attitude\PID.h</FilePath>
+            </File>
+            <File>
+              <FileName>AttitudePIDController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Attitude\AttitudePIDController.c</FilePath>
+            </File>
+            <File>
+              <FileName>AttitudePIDController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Attitude\AttitudePIDController.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

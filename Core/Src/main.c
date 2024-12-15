@@ -101,15 +101,16 @@ int main(void)
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 	MySerial_Init();
-	MPU6050_Init();
+//	MPU6050_Init();
 //	Motor_Init();
 //	Receiver_Init();
+//	printf("hello world\n");
 	// 初始化姿态解算器
 //   AttitudeSolver_Init(50, 0.8f); // 采样频率125Hz，增益为0.3
 //	 int count = 0; //用于Yaw值线性回归矫�??
 	 
-   AttitudePIDController  attitudePIDController ;
-	 AttitudePIDController_Init(&attitudePIDController);
+//  AttitudePIDController  attitudePIDController ;
+//	AttitudePIDController_Init(&attitudePIDController);
 //	Motor_SetPulse(1,0.4);
   /* USER CODE END 2 */
 
@@ -118,23 +119,11 @@ int main(void)
 //	float ax, ay, az, gx, gy, gz;
 //	float i = 0.0f;
 
-//		Motor_SetPulse(1,0.06);
-//		HAL_Delay(2000);
-//		Motor_SetPulse(1,0.07);
-//		HAL_Delay(2000);
-//		Motor_SetPulse(1,0.08);
-//		HAL_Delay(2000);
-//		Motor_SetPulse(1,0.09);
-//		HAL_Delay(2000);
-//		Motor_SetPulse(1,0.10);
-//		HAL_Delay(2000);
-//		Motor_SetPulse(1,0.05);
-//		HAL_Delay(2000);
   while (1)
   {
        
 //		UpdateMotorState();
-
+//		Motor_SetPulse(1,0.09);
 //		AttitudePIDController_ProcData(&attitudePIDController);
 			
 		// 获取传感器数
@@ -149,7 +138,7 @@ int main(void)
 //		printf("Gyro: X=%.2fPI Y=%.2fPI Z=%.2fPI\n", gx, gy, gz);
 //		printf("Roll = %.2f\tPitch = %.2f\tYaw = %.2f\n",Roll, Pitch, Yaw);
 		
-		AttitudePIDController_ProcData(&attitudePIDController);
+//		AttitudePIDController_ProcData(&attitudePIDController);
 //		SendToAno03(attitudePIDController.Roll, attitudePIDController.Pitch, attitudePIDController.Yaw);
 
 //	  		printf("q.w = %.3f\tq.x = %.3f\tq.y = %.3f\tq.z = %.3f\t\n",q.w, q.z, q.y, q.z);
